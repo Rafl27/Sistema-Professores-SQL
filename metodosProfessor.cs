@@ -22,16 +22,22 @@ namespace ProfessorBancoDeDados
 
         public static String consultarProfessor(int codigo)
         {
+            //Não está sendo possível realizar consultas repetidas vezes
+
+            //List<Professor> professoresAchados = new List<Professor>();
+            //int cont = 0;
             if (bancoDeDados.AbrirConexao())
             {
                 MySqlCommand comando = new MySqlCommand($"SELECT nome, titulacao, horas FROM professores WHERE CODIGO = {codigo}", bancoDeDados.GetConexao());
                 MySqlDataReader reader = comando.ExecuteReader();
                 Professor achado = new Professor();
+
                 while (reader.Read())
                 {
                     achado.setNome(reader.GetString("nome"));
                     achado.setTitulacao(reader.GetString("titulacao"));
                     achado.setHoras(reader.GetInt32("horas"));
+                    //cont++;
                 }
                 return $"Nome: {achado.getNome()} \n Titulação: {achado.getTitulacao()} \n Horas: {achado.getHoras()}";
             }
@@ -41,9 +47,18 @@ namespace ProfessorBancoDeDados
             }
         }
 
-        /*public static gerarFolhaDePagamento ()
+        public static String ExcluirProfessor(int codigo)
         {
+            if (bancoDeDados.AbrirConexao())
+            {
+                MySqlCommand comando = new MySqlCommand($"DELETE FROM professores WHERE CODIGO = {codigo}", bancoDeDados.GetConexao());
+                //return consultarProfessor(codigo) + "Foi deletado do sistema.";
+                MySqlDataReader reader = comando.ExecuteReader();
+                return $"Professor com o código {codigo} foi deletado do sistema";
+            }
+            else return "Professor não encontrado.";
+        }
 
-        }*/
+
     }
 }

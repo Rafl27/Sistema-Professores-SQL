@@ -9,7 +9,7 @@
             int op;
             while (menu)
             {
-                Console.WriteLine("------MENU------");
+                Console.WriteLine("\n\n\n------MENU------");
                 Console.WriteLine("1. Adicionar professor");
                 Console.WriteLine("2. Consultar professor");
                 Console.WriteLine("3. Excluir professor");
@@ -59,6 +59,10 @@
                     case 2:
                         Console.WriteLine("Digite aqui o código do professor a ser consultado: ");
                         Console.WriteLine(metodosProfessor.consultarProfessor(Convert.ToInt32(Console.ReadLine())));
+                        break;
+                    case 3:
+                        Console.WriteLine("Digite aqui o código do professor a ser removido do sistema: ");
+                        Console.WriteLine(metodosProfessor.ExcluirProfessor(Convert.ToInt32(Console.ReadLine())));
                         break;
                     case 5:
                         menu = false;
