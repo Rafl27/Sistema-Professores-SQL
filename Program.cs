@@ -62,7 +62,9 @@
                         break;
                     case 3:
                         Console.WriteLine("Digite aqui o código do professor a ser removido do sistema: ");
-                        Console.WriteLine(metodosProfessor.ExcluirProfessor(Convert.ToInt32(Console.ReadLine())));
+                        //Console.WriteLine(metodosProfessor.ExcluirProfessor(Convert.ToInt32(Console.ReadLine())));
+                        int codigo = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine(metodosProfessor.ExcluirProfessor(codigo));
                         break;
                     case 5:
                         menu = false;
