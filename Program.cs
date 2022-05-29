@@ -58,7 +58,7 @@
                         break;
                     case 2:
                         Console.WriteLine("Digite aqui o código do professor a ser consultado: ");
-                        metodosProfessor.consultarProfessor(Convert.ToInt32(Console.ReadLine()));
+                        Console.WriteLine(metodosProfessor.consultarProfessor(Convert.ToInt32(Console.ReadLine())));
                         break;
                     case 5:
                         menu = false;

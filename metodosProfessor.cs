@@ -20,9 +20,30 @@ namespace ProfessorBancoDeDados
             }
         }
 
-        public static void consultarProfessor(int codigo)
+        public static String consultarProfessor(int codigo)
         {
-            string sql = $"";
+            if (bancoDeDados.AbrirConexao())
+            {
+                MySqlCommand comando = new MySqlCommand($"SELECT nome, titulacao, horas FROM professores WHERE CODIGO = {codigo}", bancoDeDados.GetConexao());
+                MySqlDataReader reader = comando.ExecuteReader();
+                Professor achado = new Professor();
+                while (reader.Read())
+                {
+                    achado.setNome(reader.GetString("nome"));
+                    achado.setTitulacao(reader.GetString("titulacao"));
+                    achado.setHoras(reader.GetInt32("horas"));
+                }
+                return $"Nome: {achado.getNome()} \n Titulação: {achado.getTitulacao()} \n Horas: {achado.getHoras()}";
+            }
+            else
+            {
+                return "Professor não encontrado";
+            }
         }
+
+        /*public static gerarFolhaDePagamento ()
+        {
+
+        }*/
     }
 }
